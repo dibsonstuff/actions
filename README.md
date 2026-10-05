@@ -16,10 +16,8 @@
   env:
     DIBS_API_KEY: ${{ secrets.DIBS_API_KEY }}
 
-
 - name: Terraform
   run: Eg: something like: terraform apply -auto-approve
-
 
 - name: Release
   if: always()

@@ -32,9 +32,9 @@ runs:
       env:
         DIBS_API_KEY: ${{ env.DIBS_API_KEY }}
         DIBS_QUEUE: ${{ inputs.queue }}
-        SLACK_TEAM: ${{ env.slack_team }}
-        SLACK_TEAM_ID: ${{ env.slack_team_id }}
-        SLACK_USERNAME: ${{ env.slack_username }}
+        SLACK_TEAM: ${{ inputs.slack_team }}
+        SLACK_TEAM_ID: ${{ inputs.slack_team_id }}
+        SLACK_USERNAME: ${{ inputs.slack_username }}
         DIBS_DURATION: ${{ inputs.duration }}
       run: |
         result=$(python3 "$GITHUB_ACTION_PATH/seize.py")
