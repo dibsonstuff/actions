@@ -18,7 +18,7 @@ payload = {
     "key": env('DIBS_KEY', '')
 }
 
-if env('DIBS_FORCE'):
+if env('DIBS_FORCE', False):
     del payload['key']
     payload['force'] = True
 
