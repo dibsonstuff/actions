@@ -30,6 +30,7 @@ runs:
   using: composite
   steps:
     - name: Seize Dibs resource
+      id: seize
       shell: bash
       env:
         DIBS_API_KEY: ${{ env.DIBS_API_KEY }}
@@ -41,4 +42,5 @@ runs:
         DIBS_DURATION: ${{ inputs.duration }}
       run: |
         result=$(python3 "$GITHUB_ACTION_PATH/seize.py")
+        echo "::add-mask::$result"
         echo "release-key=$result" >> "$GITHUB_OUTPUT"
