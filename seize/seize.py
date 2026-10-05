@@ -16,7 +16,8 @@ payload = {
     "name": env('DIBS_USER'),
     "email": f"{env('DIBS_USER')}@{env('SLACK_TEAM')}",
     "duration": env('DIBS_DURATION'),
-    "slack_team_id": env('SLACK_TEAM_ID')
+    "slack_team_id": env('SLACK_TEAM_ID'),
+    "slack_channel_id": env('SLACK_CHANNEL_ID', '')
 }
 
 response = requests.post(

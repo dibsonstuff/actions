@@ -14,10 +14,12 @@ inputs:
   slack_username:
     description: The Slack username of the person getting in the queue
     required: true
-  duration:
-    description: How long to stay queue leader before auto-release
+  slack_channel_id:
+    description: The Slack Channel ID for queue notifications (optional)
     required: false
-    default: "1h"
+  duration:
+    description: How long to stay queue leader before auto-release (optional)
+    required: false
 
 outputs:
   release-key:
@@ -35,6 +37,7 @@ runs:
         SLACK_TEAM: ${{ inputs.slack_team }}
         SLACK_TEAM_ID: ${{ inputs.slack_team_id }}
         SLACK_USERNAME: ${{ inputs.slack_username }}
+        SLACK_CHANNEL: ${{ inputs.slack_channel_id }}
         DIBS_DURATION: ${{ inputs.duration }}
       run: |
         result=$(python3 "$GITHUB_ACTION_PATH/seize.py")
