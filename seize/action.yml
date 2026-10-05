@@ -37,7 +37,7 @@ runs:
         SLACK_TEAM: ${{ inputs.slack_team }}
         SLACK_TEAM_ID: ${{ inputs.slack_team_id }}
         SLACK_USERNAME: ${{ inputs.slack_username }}
-        SLACK_CHANNEL: ${{ inputs.slack_channel_id }}
+        SLACK_CHANNEL_ID: ${{ inputs.slack_channel_id }}
         DIBS_DURATION: ${{ inputs.duration }}
       run: |
         result=$(python3 "$GITHUB_ACTION_PATH/seize.py")

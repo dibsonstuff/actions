@@ -1,0 +1,37 @@
+name: Dibs Release
+description: Release a position in a Dibs queue
+
+inputs:
+  queue:
+    description: Dibs queue to remove person from
+    required: true
+  slack_team:
+    description: The Slack short name for your organization
+    required: true
+  slack_team_id:
+    description: The Slack Team ID for your organization
+    required: true
+  slack_channel_id:
+    description: The Slack Channel ID for queue notifications (optional)
+    required: false
+  slack_key:
+    description: The Slack key obtained in the Seize action (optional if force)
+    required: false
+  force:
+    description: Regardless of Slack key just force the queue leader off (optional)
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Release Dibs resource
+      shell: bash
+      env:
+        DIBS_API_KEY: ${{ env.DIBS_API_KEY }}
+        DIBS_QUEUE: ${{ inputs.queue }}
+        SLACK_TEAM: ${{ inputs.slack_team }}
+        SLACK_TEAM_ID: ${{ inputs.slack_team_id }}
+        SLACK_CHANNEL_ID: ${{ inputs.slack_channel_id }}
+        DIBS_KEY: ${{ inputs.slack_key }}
+        DIBS_FORCE: ${{ inputs.force }}
+      run: python3 "$GITHUB_ACTION_PATH/release.py"
